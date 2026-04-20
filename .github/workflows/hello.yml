@@ -1,0 +1,27 @@
+name: Hello World Training Workflow
+
+on:
+  workflow_dispatch: 
+  issues:
+    types: [opened, edited] 
+
+jobs:
+  greet-job:
+    runs-on: ubuntu-latest 
+    steps:
+      - name: List before checkout
+        run: ls -l 
+
+      - name: Checkout repository
+        uses: actions/checkout@v5
+
+      - name: List after checkout
+        run: ls -l
+
+      - name: Greet the User
+        env:
+          MY_ENV: "Hello from Ukraine!"
+        run: |
+          echo "Hello World!"
+          echo "Custom env: $MY_ENV"
+          echo "Actor (who triggered this): $GITHUB_ACTOR" # Вбудована змінна
